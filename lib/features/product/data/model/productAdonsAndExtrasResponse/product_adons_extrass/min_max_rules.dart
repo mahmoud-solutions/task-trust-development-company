@@ -1,7 +1,8 @@
+// file: min_max_rules.dart
 class MinMaxRules {
-  int? min;
-  int? max;
-  int? exact;
+  final int? min;
+  final int? max;
+  final int? exact;
 
   MinMaxRules({this.min, this.max, this.exact});
 

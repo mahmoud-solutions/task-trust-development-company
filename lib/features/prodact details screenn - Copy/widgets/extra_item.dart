@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ExtraItem extends StatelessWidget {
   final String title;
-
   const ExtraItem({super.key, required this.title});
 
   @override
@@ -11,7 +10,6 @@ class ExtraItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(title),
-        // الأيقونة (يمين)
         const SizedBox(width: 8),
         Container(
           width: 18,
@@ -21,8 +19,6 @@ class ExtraItem extends StatelessWidget {
             border: Border.all(color: Colors.grey),
           ),
         ),
-
-        // النص
       ],
     );
   }

@@ -4,14 +4,14 @@ class AddonEntity extends Equatable {
   final String id;
   final String title;
   final String titleAr;
-  final bool required;
+  final bool isRequired;
   final bool isMultiChoice;
 
   const AddonEntity({
     required this.id,
     required this.title,
     required this.titleAr,
-    required this.required,
+    required this.isRequired,
     required this.isMultiChoice,
   });
 
@@ -20,7 +20,7 @@ class AddonEntity extends Equatable {
         id,
         title,
         titleAr,
-        required,
+        isRequired,
         isMultiChoice,
       ];
 }

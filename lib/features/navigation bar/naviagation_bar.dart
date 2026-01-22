@@ -3,7 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:trustdeveopmenttask/core/routing/app_router.dart';
 
 class NavigationBarr extends StatelessWidget {
-  const NavigationBarr({super.key});
+  const NavigationBarr({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +70,11 @@ class NavigationBarr extends StatelessWidget {
                   ],
                 ),
                 child: IconButton(
-                    onPressed: () =>
-                        GoRouter.of(context).push(AppRouter.cartScreen),
+                    onPressed: () {
+                      context.go(
+                        AppRouter.cartScreen,
+                      );
+                    },
                     icon: Icon(
                       Icons.shopping_basket,
                       color: Colors.white,

@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:trustdeveopmenttask/core/errors/failures.dart';
 import 'package:trustdeveopmenttask/features/product/data/model/product_details_model_response/product_details_model_response.dart';
 import 'package:trustdeveopmenttask/features/product/domain/entity/category_entities.dart';
-import 'package:trustdeveopmenttask/features/product/domain/entity/product_adons.dart';
+import 'package:trustdeveopmenttask/features/product/domain/entity/adons__entity.dart';
 import 'package:trustdeveopmenttask/features/product/domain/entity/product_entities.dart';
 
 abstract class ProductRepository {
@@ -13,5 +13,5 @@ abstract class ProductRepository {
       int categoryId);
   Future<Either<Failure, ProductDetailsModelResponse>> getProductDetails(
       int productId);
-  Future<List<AddonEntity>> getProductAddons(String productId);
+  Future<List<AddonEntity>> getProductAddons(int productId);
 }

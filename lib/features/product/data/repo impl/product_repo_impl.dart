@@ -6,7 +6,7 @@ import 'package:trustdeveopmenttask/features/product/data/model/product_details_
 import 'package:trustdeveopmenttask/features/product/domain/category%20repo/repo_product_and_category.dart';
 import 'package:trustdeveopmenttask/features/product/domain/entity/category_entities.dart';
 import 'package:trustdeveopmenttask/features/product/domain/entity/modelToentity/adonmodel.dart';
-import 'package:trustdeveopmenttask/features/product/domain/entity/product_adons.dart';
+import 'package:trustdeveopmenttask/features/product/domain/entity/adons__entity.dart';
 import 'package:trustdeveopmenttask/features/product/domain/entity/product_entities.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
@@ -80,8 +80,8 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<List<AddonEntity>> getProductAddons(String productId) async {
-    final List<AddonModel> addonsModel =
+  Future<List<AddonEntity>> getProductAddons(int productId) async {
+    final List<AddonDomainModel> addonsModel =
         await remoteDataSource.getProductAddons(productId);
     return addonsModel.map((model) => model.toEntity()).toList();
   }

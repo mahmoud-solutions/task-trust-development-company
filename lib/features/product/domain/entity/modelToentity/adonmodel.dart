@@ -1,21 +1,21 @@
-import 'package:trustdeveopmenttask/features/product/domain/entity/product_adons.dart';
+import 'package:trustdeveopmenttask/features/product/domain/entity/adons__entity.dart';
 
-class AddonModel extends AddonEntity {
-  AddonModel({
+class AddonDomainModel extends AddonEntity {
+  const AddonDomainModel({
     required super.id,
     required super.title,
     required super.titleAr,
-    required super.required,
+    required super.isRequired,
     required super.isMultiChoice,
   });
 
-  factory AddonModel.fromJson(Map<String, dynamic> json) {
-    return AddonModel(
+  factory AddonDomainModel.fromJson(Map<String, dynamic> json) {
+    return AddonDomainModel(
       id: json['id'].toString(),
       title: json['title'] ?? '',
       titleAr: json['title_ar'] ?? '',
-      required: json['required'] ?? false,
-      isMultiChoice: json['IsMultiChoise'] ?? false,
+      isRequired: json['required'] ?? false,
+      isMultiChoice: json['is_multi_choice'] ?? false,
     );
   }
 
@@ -24,18 +24,18 @@ class AddonModel extends AddonEntity {
       'id': id,
       'title': title,
       'title_ar': titleAr,
-      'required': required,
-      'IsMultiChoise': isMultiChoice,
+      'required': isRequired,
+      'is_multi_choice': isMultiChoice,
     };
   }
 
-  // هنا دالة toEntity الطبيعية
+  // 🔹 هنا الدالة اللي ناقصة
   AddonEntity toEntity() {
     return AddonEntity(
       id: id,
       title: title,
       titleAr: titleAr,
-      required: required,
+      isRequired: isRequired,
       isMultiChoice: isMultiChoice,
     );
   }

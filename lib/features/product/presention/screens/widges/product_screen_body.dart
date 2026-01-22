@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:trustdeveopmenttask/core/routing/app_router.dart';
 import 'package:trustdeveopmenttask/features/product/presention/productCubit/product_cubit.dart';
 import 'package:trustdeveopmenttask/features/product/presention/screens/widges/product_itm.dart';
 import 'package:trustdeveopmenttask/features/product/presention/screens/widges/top_categoiriez_section.dart';
@@ -39,11 +41,32 @@ class ProductScreenBody extends StatelessWidget {
                   separatorBuilder: (_, __) => const SizedBox(height: 12),
                   itemBuilder: (context, index) {
                     final product = products[index];
-                    return ProductItem(
-                      productEntity: product,
-                      name: product.nameAr ?? '',
-                      price: product.price,
-                      image: product.image,
+                    print(
+                        'Product: ${product.nameAr}, ID: ${product.id}'); // اتأكد ان ال id موجود
+                    return InkWell(
+                      onTap: () {
+                        final productId = product.id;
+                        if (productId != null) {
+                          GoRouter.of(context).go(
+                              AppRouter.prodactDetailsScreennnnnn,
+                              extra: product);
+                          print(
+                              'product.id type: ${product.id.runtimeType}, value: ${product.id}');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  'خطأ: لا يمكن فتح تفاصيل المنتج، ID غير موجود'),
+                            ),
+                          );
+                        }
+                      },
+                      child: ProductItem(
+                        productEntity: product,
+                        name: product.nameAr ?? '',
+                        price: product.price,
+                        image: product.image,
+                      ),
                     );
                   },
                 );

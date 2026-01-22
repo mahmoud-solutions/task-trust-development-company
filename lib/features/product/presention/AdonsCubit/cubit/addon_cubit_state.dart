@@ -1,4 +1,4 @@
-import 'package:trustdeveopmenttask/features/product/domain/entity/product_adons.dart';
+import 'package:trustdeveopmenttask/features/product/domain/entity/adons__entity.dart';
 
 abstract class AddonState {}
 

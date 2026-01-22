@@ -33,8 +33,8 @@ class ProductDetailsModelResponse {
   String? length;
   String? width;
   String? height;
-  List<dynamic>? upsellIds;
-  List<dynamic>? crossSellIds;
+  List<int>? upsellIds;
+  List<int>? crossSellIds;
   int? parentId;
   bool? reviewsAllowed;
   String? purchaseNote;
@@ -50,7 +50,7 @@ class ProductDetailsModelResponse {
   int? shippingClassId;
   List<dynamic>? downloads;
   String? imageId;
-  List<dynamic>? galleryImageIds;
+  List<int>? galleryImageIds;
   int? downloadLimit;
   int? downloadExpiry;
   List<dynamic>? ratingCounts;
@@ -176,8 +176,11 @@ class ProductDetailsModelResponse {
       length: json['length'] as String?,
       width: json['width'] as String?,
       height: json['height'] as String?,
-      upsellIds: json['upsell_ids'] as List<dynamic>?,
-      crossSellIds: json['cross_sell_ids'] as List<dynamic>?,
+      upsellIds:
+          (json['upsell_ids'] as List<dynamic>?)?.map((e) => e as int).toList(),
+      crossSellIds: (json['cross_sell_ids'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
       parentId: json['parent_id'] as int?,
       reviewsAllowed: json['reviews_allowed'] as bool?,
       purchaseNote: json['purchase_note'] as String?,
@@ -187,13 +190,17 @@ class ProductDetailsModelResponse {
       postPassword: json['post_password'] as String?,
       virtual: json['virtual'] as bool?,
       downloadable: json['downloadable'] as bool?,
-      categoryIds: json['category_ids'] as List<int>?,
+      categoryIds: (json['category_ids'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
       tagIds: json['tag_ids'] as List<dynamic>?,
       brandIds: json['brand_ids'] as List<dynamic>?,
       shippingClassId: json['shipping_class_id'] as int?,
       downloads: json['downloads'] as List<dynamic>?,
       imageId: json['image_id'] as String?,
-      galleryImageIds: json['gallery_image_ids'] as List<dynamic>?,
+      galleryImageIds: (json['gallery_image_ids'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
       downloadLimit: json['download_limit'] as int?,
       downloadExpiry: json['download_expiry'] as int?,
       ratingCounts: json['rating_counts'] as List<dynamic>?,
@@ -212,7 +219,9 @@ class ProductDetailsModelResponse {
       priceTaxSale: json['price_tax_sale'] as int?,
       points: json['points'] as int?,
       onSale: json['on_sale'] as bool?,
-      relatedIds: json['related_ids'] as List<int>?,
+      relatedIds: (json['related_ids'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
       type: json['type'] as String?,
     );
   }

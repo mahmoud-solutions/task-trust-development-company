@@ -1,3 +1,29 @@
+// import 'package:device_preview/device_preview.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
+// import 'package:trustdeveopmenttask/features/prodact%20details%20screenn%20-%20Copy/prodact_details_screens.dart';
+
+// void main() {
+//   runApp(DevicePreview(enabled: true, builder: (context) => const MyTestApp()));
+// }
+
+// class MyTestApp extends StatelessWidget {
+//   const MyTestApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       useInheritedMediaQuery: true,
+//       debugShowCheckedModeBanner: false,
+//       locale: DevicePreview.locale(context),
+//       builder: DevicePreview.appBuilder,
+//       home: ProdactDetailsScreen(
+//         productId: 123,
+//       ),
+//     );
+//   }
+// }
+
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

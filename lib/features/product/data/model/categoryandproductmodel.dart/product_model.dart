@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:trustdeveopmenttask/features/product/data/model/productAdonsAndExtrasResponse/product_adons_extrass/addon.dart';
+import 'package:trustdeveopmenttask/features/product/data/model/productAdonsAndExtrasResponse/product_adons_extrass/addonResponseModel.dart';
 import 'package:trustdeveopmenttask/features/product/domain/entity/product_entities.dart';
 
 class ProductModel extends Equatable {
@@ -16,7 +16,7 @@ class ProductModel extends Equatable {
   final bool onSale;
   final int priceTax;
   final int points;
-  final List<Addon> addons;
+  final List<AddonResponseModel> addons;
   const ProductModel({
     required this.id,
     required this.name,
@@ -50,7 +50,8 @@ class ProductModel extends Equatable {
       priceTax: json['price_tax'] ?? 0,
       points: json['points'] ?? 0,
       addons: (json['addons'] as List<dynamic>?)
-              ?.map((e) => Addon.fromJson(e as Map<String, dynamic>))
+              ?.map(
+                  (e) => AddonResponseModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [],
     );

@@ -1,13 +1,15 @@
-import 'addon.dart';
+import 'addonResponseModel.dart';
+// file: block.dart
+import 'addonResponseModel.dart';
 
 class Block {
-  String? id;
-  String? name;
-  String? productAssociation;
-  String? excludeProducts;
-  String? userAssociation;
-  String? excludeUsers;
-  List<Addon>? addons;
+  final String? id;
+  final String? name;
+  final String? productAssociation;
+  final String? excludeProducts;
+  final String? userAssociation;
+  final String? excludeUsers;
+  final List<AddonResponseModel>? addons;
 
   Block({
     this.id,
@@ -27,7 +29,7 @@ class Block {
         userAssociation: json['user_association'] as String?,
         excludeUsers: json['exclude_users'] as String?,
         addons: (json['addons'] as List<dynamic>?)
-            ?.map((e) => Addon.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => AddonResponseModel.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
 

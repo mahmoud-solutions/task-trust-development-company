@@ -11,7 +11,7 @@ abstract class ProductRemoteDataSource {
   Future<List<CategoryModel>> getCategories();
   Future<List<ProductModel>> getProductsByCategory(int categoryId);
   Future<ProductDetailsModelResponse> getProductDetails(int productId);
-  Future<List<AddonModel>> getProductAddons(String productId);
+  Future<List<AddonDomainModel>> getProductAddons(int productId);
 }
 
 class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
@@ -125,7 +125,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   }
 
   @override
-  Future<List<AddonModel>> getProductAddons(String productId) async {
+  Future<List<AddonDomainModel>> getProductAddons(int productId) async {
     try {
       final response = await dio.get(
         'https://dushkaburger.com/wp-json/proaddon/v1/get2/',
@@ -134,12 +134,12 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
       if (response.statusCode == 200 && response.data['blocks'] != null) {
         final blocks = response.data['blocks'] as List;
-        List<AddonModel> addons = [];
+        List<AddonDomainModel> addons = [];
 
         for (var block in blocks) {
           if (block['addons'] != null) {
             addons.addAll((block['addons'] as List)
-                .map((e) => AddonModel.fromJson(e))
+                .map((e) => AddonDomainModel.fromJson(e))
                 .toList());
           }
         }

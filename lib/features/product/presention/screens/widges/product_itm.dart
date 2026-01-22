@@ -39,7 +39,7 @@ class ProductItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         GoRouter.of(context).push(
-          AppRouter.prodactDetailsScreen,
+          AppRouter.prodactDetailsScreennnnnn,
           extra: productEntity,
         );
       },

@@ -7,7 +7,7 @@ class AddonCubit extends Cubit<AddonState> {
 
   AddonCubit(this.getProductAddonsUseCase) : super(AddonInitial());
 
-  Future<void> fetchAddons(String productId) async {
+  Future<void> fetchAddons(int productId) async {
     emit(AddonLoading());
     try {
       final addons = await getProductAddonsUseCase(productId);

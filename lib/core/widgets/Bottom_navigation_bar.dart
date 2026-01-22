@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:trustdeveopmenttask/core/routing/app_router.dart';
 import 'package:trustdeveopmenttask/features/cart%20screen/domain/entity/AddToCartEntity/add_to_cart_entity.dart';
 import 'package:trustdeveopmenttask/features/cart%20screen/presention/AddToCartCubit/cubit/addto_cart_cubit.dart';
 import 'package:trustdeveopmenttask/features/cart%20screen/presention/AddToCartCubit/cubit/addto_cart_state.dart';
-import 'package:trustdeveopmenttask/features/cart%20screen/presention/GetCartCubit/cubit/cart_cubit.dart';
 import 'package:trustdeveopmenttask/features/product/domain/entity/product_entities.dart';
+import 'package:trustdeveopmenttask/features/product/presention/cubit/gest_cubit.dart';
 
-class BottomNaavigationBar extends StatelessWidget {
+class BottomNavigationBarAddToCart extends StatelessWidget {
   final ProductEntity productEntity;
   final int quantity;
   final List<Map<String, dynamic>>? selectedAddons;
 
-  const BottomNaavigationBar({
+  const BottomNavigationBarAddToCart({
     super.key,
     required this.productEntity,
     this.quantity = 1,
@@ -19,6 +21,17 @@ class BottomNaavigationBar extends StatelessWidget {
   });
 
   void _addToCart(BuildContext context) {
+    final guestId = context.read<GuestIdCubit>().guestId;
+
+    if (guestId == null || guestId.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('جاري تحميل معلومات الجلسة...')),
+      );
+      context.read<GuestIdCubit>().loadGuestId();
+      GoRouter.of(context).go(AppRouter.cartScreen);
+      return;
+    }
+
     final addToCartEntity = AddToCartEntity(
       productId: productEntity.id,
       quantity: quantity,
@@ -32,16 +45,14 @@ class BottomNaavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AddTOCartCubit, AddToCartState>(
       listener: (context, state) {
-        if (state is AddToCartSuccess && state.productId == productEntity.id) {
+        if (state is AddToCartSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('تمت الإضافة للسلة بنجاح ✓'),
               backgroundColor: Colors.green,
             ),
           );
-          context.read<CartCubit>().fetchCart(state.guestId);
-        } else if (state is AddToCartError && 
-                   state.productId == productEntity.id) {
+        } else if (state is AddToCartError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('خطأ: ${state.message}'),
@@ -51,22 +62,20 @@ class BottomNaavigationBar extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        final isLoading = state is AddToCartLoading && 
-                         state.productId == productEntity.id;
         return GestureDetector(
-          onTap: isLoading ? null : () => _addToCart(context),
+          onTap: state is AddToCartLoading ? null : () => _addToCart(context),
           child: Container(
             height: 70,
             margin: const EdgeInsets.all(16),
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
             decoration: BoxDecoration(
-              color: isLoading
-                  ? Colors.grey.shade300
-                  : Colors.pink.shade100,
+              color: state is AddToCartLoading
+                  ? Colors.grey
+                  : Colors.red.withOpacity(0.7),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Center(
-              child: isLoading
+              child: state is AddToCartLoading
                   ? const SizedBox(
                       height: 20,
                       width: 20,
@@ -76,9 +85,9 @@ class BottomNaavigationBar extends StatelessWidget {
                       ),
                     )
                   : const Text(
-                      'أضف إلى السلة',
+                      'اضف الى السلة',
                       style: TextStyle(
-                        color: Colors.black87,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),

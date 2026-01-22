@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class ProdactDetailsAppBar extends StatelessWidget {
   const ProdactDetailsAppBar({super.key});
@@ -10,26 +11,16 @@ class ProdactDetailsAppBar extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           children: [
-            // الشمال - سلة
             IconButton(
               onPressed: () {},
               icon: const Icon(Icons.shopping_cart),
             ),
-
             const Spacer(),
-
-            // النص في المنتصف
             const Text(
               'تفاصيل المنتج',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-
             const Spacer(),
-
-            // اليمين - رجوع
             InkWell(
               onTap: () => Navigator.pop(context),
               child: Row(
