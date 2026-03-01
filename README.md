@@ -1,122 +1,120 @@
-🍔 Dushka Burger App
+# 🍔 Dushka Burger App
 
-Dushka Burger App is a mobile application that allows users (guest users) to browse categories, view product details, and manage their cart in a seamless and modern way. The app is fully production-ready, following clean architecture principles.
+**Dushka Burger App** is a mobile application that allows guest users to browse categories, view product details, and manage their cart in a seamless and modern way. The app is production-ready, following clean architecture principles.
 
-Features
+---
 
-Guest User Flow
-Handle guest users only, no authentication required
+## Features
 
-Categories
-Browse all available product categories
+* **Guest User Flow**
+  Handle guest users only, no authentication required
 
-Product Details
-View detailed product information and addons/extras
+* **Categories**
+  Browse all available product categories
 
-Cart Management
-View cart, add products with quantity and addons, delete items
+* **Product Details**
+  View detailed product information and addons/extras
 
-Error Handling
-Proper error handling for network requests and API errors
+* **Cart Management**
+  View cart, add products with quantity and addons, delete items
 
-Localization
-Supports English and Arabic languages
+* **Error Handling**
+  Proper error handling for network requests and API errors
 
-Tech Stack & Architecture
+* **Localization**
+  Supports English and Arabic languages
 
-Flutter & Dart
+---
 
-Clean Architecture (Domain, Data, Presentation layers)
+## Tech Stack & Architecture
 
-Cubit for state management
+* **Flutter & Dart**
+* **Clean Architecture** (Domain, Data, Presentation layers)
+* **Cubit** for state management
+* **Dio** for API integration
+* **Dependency Injection**
+* **RESTful APIs**
+* Modular and scalable project structure
 
-Dio for API integration
+---
 
-Dependency Injection
+## API Integration
 
-RESTful APIs
+**Base URL:**
+`https://dushkaburger.com/wp-json/`
 
-Modular and scalable project structure
-
-API Integration
-
-Base URL:
-https://dushkaburger.com/wp-json/
-
-Authentication:
+**Authentication:**
 Basic Auth with credentials:
 
-Username: testapp
+* Username: `testapp`
+* Password: `5S0Q YjyH 4s3G elpe 5F8v u8as`
 
-Password: 5S0Q YjyH 4s3G elpe 5F8v u8as
+**Endpoints:**
 
-Endpoints:
+1. **Get Guest ID** – `GET guestcart/v1/guestid`
 
-Get Guest ID
-GET guestcart/v1/guestid
+2. **Get Categories** – `GET custom-api/v1/categories`
 
-Get Categories
-GET custom-api/v1/categories
+3. **Get Product Details** – `GET custom-api/v1/products?product_id={id}`
 
-Get Product Details
-GET custom-api/v1/products?product_id={id}
+4. **Get Product Addons/Extras** – `GET proaddon/v1/get2/?product_id2={id}`
 
-Get Product Addons/Extras
-GET proaddon/v1/get2/?product_id2={id}
+5. **Get Cart (Guest User)** – `GET guestcart/v1/cart?guest_id={guestId}`
 
-Get Cart (Guest User)
-GET guestcart/v1/cart?guest_id={guestId}
+6. **Add to Cart (Guest User)** – `POST guestcart/v1/cart`
 
-Add to Cart (Guest User)
-POST guestcart/v1/cart
+   ```json
+   {
+     "guest_id": "guest_123",
+     "items": [
+       {
+         "product_id": 456,
+         "quantity": 2,
+         "addons": [
+           {
+             "id": 789,
+             "name": "Extra Cheese",
+             "price": "5.00"
+           }
+         ]
+       }
+     ]
+   }
+   ```
 
-{
-  "guest_id": "guest_123",
-  "items": [
-    {
-      "product_id": 456,
-      "quantity": 2,
-      "addons": [
-        {
-          "id": 789,
-          "name": "Extra Cheese",
-          "price": "5.00"
-        }
-      ]
-    }
-  ]
-}
+7. **Delete from Cart (Guest User)** – `DELETE guestcart/v1/cart`
 
-Delete from Cart (Guest User)
-DELETE guestcart/v1/cart
+   ```json
+   {
+     "guest_id": "guest_123",
+     "product_id": 456,
+     "quantity": 1
+   }
+   ```
 
-{
-  "guest_id": "guest_123",
-  "product_id": 456,
-  "quantity": 1
-}
-Screens
+---
 
-Categories Screen – Display all product categories
+## Screens
 
-Product Details Screen – Show product info, price, and addons
+1. **Categories Screen** – Display all product categories
 
-View Cart Screen – Display cart items, manage quantity, delete items
+2. **Product Details Screen** – Show product info, price, and addons
 
-Why This Project Is Important
+3. **View Cart Screen** – Display cart items, manage quantity, delete items
 
-Gained experience building production-ready Flutter apps
+---
 
-Applied Clean Architecture in real-world project
+## Why This Project Is Important
 
-Practiced Cubit state management effectively
+* Experience building production-ready Flutter apps
+* Applied Clean Architecture in real-world project
+* Practiced Cubit state management effectively
+* Integrated RESTful APIs with proper error handling
+* Developed a fully localized app supporting multiple languages
 
-Learned to integrate RESTful APIs with proper error handling
+---
 
-Developed a fully localized app supporting multiple languages
+## Acknowledgements
 
-Acknowledgements
-
-Built in collaboration with Next Zone
-
-Special thanks to API team at Dushka Burger for providing endpoints
+* Built in collaboration with Next Zone
+* Special thanks to API team at Dushka Burger for providing endpoints
